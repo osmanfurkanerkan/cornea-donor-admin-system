@@ -16,7 +16,16 @@ public class eslestirmeForm extends javax.swing.JFrame {
 
     public eslestirmeForm() {
         initComponents();
-        this.setTitle("Hasta-Donör Eşleşim Yönetim Paneli");
+        try {
+            java.net.URL iconURL = getClass().getResource("/images/cropped-Limbustem-1-1.jpeg");
+            if (iconURL != null) {
+                javax.swing.ImageIcon icon = new javax.swing.ImageIcon(iconURL);
+                this.setIconImage(icon.getImage());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        this.setTitle("Hasta-Donör Eşleşim Yönetim Paneli");    
         this.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
         donörleriYukleComboBox();
 
@@ -58,8 +67,6 @@ public class eslestirmeForm extends javax.swing.JFrame {
         } else {
             aciliyet = "Normal";
         }
-
-           
         
             model.addRow(new Object[]{
                 h.getId(),
@@ -96,6 +103,34 @@ public class eslestirmeForm extends javax.swing.JFrame {
         }
 
     } 
+    // --- ALPER HOCA'NIN İSTEDİĞİ RASTGELE (MOCK ML) TURNUVA ALGORİTMASI ---
+    private List<Hasta> rastgeleTurnuvaIleTop20Sec(List<Hasta> tumHastalar) {
+        List<Hasta> havuz = new ArrayList<>(tumHastalar); 
+        List<Hasta> top20Listesi = new ArrayList<>();
+        java.util.Random random = new java.util.Random();
+
+        int secilecekKisiSayisi = Math.min(20, havuz.size());
+
+        for (int i = 0; i < secilecekKisiSayisi; i++) {
+            Hasta suAnkiSampiyon = havuz.get(0);
+
+            for (int j = 1; j < havuz.size(); j++) {
+                Hasta rakip = havuz.get(j);
+                
+                int modelKarari = random.nextInt(2); 
+                
+                if (modelKarari == 1) {
+                    suAnkiSampiyon = rakip; 
+                }
+            }
+
+            top20Listesi.add(suAnkiSampiyon);
+            havuz.remove(suAnkiSampiyon);
+        }
+
+        return top20Listesi;
+    }
+    // ------------------------------------------------------------------------
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -192,18 +227,22 @@ public class eslestirmeForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
-        Object secilenNesne = jComboBox1.getSelectedItem(); // Senin kodda adı jComboBox1 idi
-        if (secilenNesne == null) {
+        int seciliIndex = jComboBox1.getSelectedIndex(); 
+        
+        if (seciliIndex == -1) {
             JOptionPane.showMessageDialog(this, "Lütfen listeden bir donör seçin!");
             return;
         }
 
-        Donör seciliDonor = (Donör) secilenNesne;
-        List<Hasta> siraliHastalar = eslestirmeMotoru.sirala(seciliDonor);
+        Donör seciliDonor = hafizadakiDonorler.get(seciliIndex);
+        
+        List<Hasta> tumHastalar = hastaYoneticisi.tumHastalariListele();
+        
+        List<Hasta> top20Hastalar = rastgeleTurnuvaIleTop20Sec(tumHastalar);
 
-        hastalariYukleJTable(siraliHastalar);
+        hastalariYukleJTable(top20Hastalar);
 
-        JOptionPane.showMessageDialog(this, "Eşleştirme tamamlandı! Liste puana göre sıralandı.");
+        JOptionPane.showMessageDialog(this, "Eşleştirme Simülasyonu Tamamlandı!\nRastgele turnuva ile en uygun 20 hasta belirlendi.");
     }//GEN-LAST:event_button1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
