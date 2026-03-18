@@ -1,6 +1,8 @@
 
 
-cropped-Limbustem-1-1.jpeg
+<p align="center">
+  <img src="logo.jpeg" width="300" title="Project Logo">
+</p>
 
 
 # Cornea Donor and Recipient Management System 👁️
