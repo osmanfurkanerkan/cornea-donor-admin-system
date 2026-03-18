@@ -22,8 +22,8 @@
         <dependency>
             <groupId>com.toedter</groupId>
             <artifactId>jcalendar</artifactId>
-        <version>1.4</version>
-    </dependency>
+            <version>1.4</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -33,14 +33,15 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.11.0</version>
                 <configuration>
-                    </configuration>
+                </configuration>
             </plugin>
         </plugins>
     </build>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.release>17</maven.compiler.release>
-        <exec.mainClass>com.mycompany.tubitakstarprojebaslangic.AnaSayfaForm</exec.mainClass>
+        <exec.mainClass>cornea.donor.recipient.management.MainForm</exec.mainClass>
     </properties>
-    <name>KorneaDonörveAlıcıYönetimUygulaması</name>
+    <name>cornea.donor.recipient.management</name>
 </project>
