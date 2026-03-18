@@ -1,7 +1,7 @@
 
 
 <p align="center">
-  <img src="logo.jpeg" width="300" title="Project Logo">
+  <img src="cropped-Limbustem-1-1.jpeg" width="300" title="Project Logo">
 </p>
 
 
