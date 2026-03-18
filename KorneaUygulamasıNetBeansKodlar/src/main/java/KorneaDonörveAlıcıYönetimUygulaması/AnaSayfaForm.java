@@ -18,22 +18,15 @@ public class AnaSayfaForm extends javax.swing.JFrame {
         initComponents();
         this.setSize(1100, 750);
         this.setLocationRelativeTo(null);
-
-        // --- UYGULAMA İKONU VE EKRAN LOGOSU KODU BAŞLANGICI ---
         try {
-            // Resmi klasörden çekiyoruz
             java.net.URL iconURL = getClass().getResource("/images/cropped-Limbustem-1-1.jpeg");
-            
+           
             if (iconURL != null) {
                 javax.swing.ImageIcon orijinalIkon = new javax.swing.ImageIcon(iconURL);
-                
-                // 1. Görev: Alt görev çubuğu ve pencere logosunu ayarla
                 this.setIconImage(orijinalIkon.getImage());
-                
-                // 2. Görev: Ekrana logoyu ekle (Boyutunu 250x250 piksel yapıyoruz ki ekrana sığsın)
                 java.awt.Image kucultulmusResim = orijinalIkon.getImage().getScaledInstance(300, 300, java.awt.Image.SCALE_SMOOTH);
                 jLabel5.setIcon(new javax.swing.ImageIcon(kucultulmusResim));
-                jLabel5.setText(""); // Eğer içinde yanlışlıkla yazı kaldıysa temizler
+                jLabel5.setText(""); 
                 
             } else {
                 System.out.println("HATA: Resim bulunamadı! 'resources/images/' klasörünü kontrol et.");
@@ -41,7 +34,7 @@ public class AnaSayfaForm extends javax.swing.JFrame {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        // --- KOD BİTİŞİ ---
+       
     }
 
     /**
@@ -182,7 +175,7 @@ public class AnaSayfaForm extends javax.swing.JFrame {
 
     
     com.formdev.flatlaf.FlatLightLaf.setup();
-
+    
     java.awt.EventQueue.invokeLater(new Runnable() {
         public void run() {
             new AnaSayfaForm().setVisible(true);

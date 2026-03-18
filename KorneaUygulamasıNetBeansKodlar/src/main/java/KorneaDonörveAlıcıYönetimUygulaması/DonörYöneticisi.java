@@ -9,7 +9,7 @@ import java.util.List;
 
 public class DonörYöneticisi {
 
-    //Parametre olarak gelen Donör nesnesindeki bilgileri alıp veritabanına yüklüyoruz.
+
     public void yeniDonörEkle(Donör donör) { 
         String sql = "INSERT INTO Donors (ad_soyad, dogum_yili, cinsiyet, endotel_sayisi, pk_uygunluk, lameller_tip) VALUES (?, ?, ?, ?, ?, ?)";
         try (Connection connection = DataBase.connect();

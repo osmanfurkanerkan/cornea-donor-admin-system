@@ -7,20 +7,14 @@ public class Eslestirme {
     private HastaYoneticisi hastaYoneticisi = new HastaYoneticisi();
 
     public List<Hasta> sirala(Donör donor) {
-  
         List<Hasta> hastalar = hastaYoneticisi.tumHastalariListele();
-
         for (Hasta h : hastalar) {
             int hesaplananPuan = puanHesapla(h, donor);
-           
             h.setAciliyetPuani(hesaplananPuan);
         }
-
-      
         Collections.sort(hastalar, new Comparator<Hasta>() {
             @Override
             public int compare(Hasta h1, Hasta h2) {
-            
                 return h2.getAciliyetPuani() - h1.getAciliyetPuani();
             }
         });
@@ -38,11 +32,7 @@ public class Eslestirme {
         } else {
             korneaPuan = 0;     
         }
-
-      
-   
         int aciliyet;
-
         if (h.getLegalKorluk() == 1) {
             aciliyet = 10; 
         } else {
